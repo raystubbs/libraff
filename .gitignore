@@ -1,0 +1,8 @@
+test/test
+**/build
+**/*.o
+**/*.so
+**/*.a
+**/*.wav
+**/vgcore.*
+
