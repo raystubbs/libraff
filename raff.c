@@ -110,7 +110,7 @@ openStream( raff_Stream* stream ) {
 
     raff_ID* idp = parseID( stream );
     if( !idp || *idp != RIFF_ID ) {
-        errnum = raff_ERR_NOT_RAFF;
+        errnum = raff_ERR_NOT_RIFF;
         return NULL;
     }
     
@@ -228,7 +228,7 @@ raff_errorMsg( void ) {
             return "Requested list form from data chunk";
         case raff_ERR_IS_LIST:
             return "Requested data form from list chunk";
-        case raff_ERR_NOT_RAFF:
+        case raff_ERR_NOT_RIFF:
             return "File does not begin with a RAFF chunk";
         case raff_ERR_CORRUPT:
             return "Invalid or corrup formatting";

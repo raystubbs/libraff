@@ -13,7 +13,7 @@ typedef enum raff_Error {
     raff_ERR_NONE,
     raff_ERR_NOT_LIST,
     raff_ERR_IS_LIST,
-    raff_ERR_NOT_RAFF,
+    raff_ERR_NOT_RIFF,
     raff_ERR_CORRUPT,
     raff_ERR_CANT_OPEN
 } raff_Error;
