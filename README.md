@@ -135,7 +135,8 @@ invalid.
 
 ## Manipulation
 For RIFF manipulation we instroduce a few more functions.  The
-`riff_prepend()` function adds a chunk to some list... but
+`riff_prepend()` function adds a chunk to be beginning and
+`riff_append()` adds a chunk to the end of a list... but
 each chunk can only belong to one list at a time, so if the
 given chunk already 'belongs' to another list, then an assertion
 failure will occur.  To get around this we can 'copy' a chunk
@@ -144,6 +145,7 @@ the underlying data buffer; but since chunks are immutable this
 isn't an issue.
 
     raff_prepend( someList, someChunk );
+    raff_append( someList, otherChunk );
     
     raff_Chunk* copy = raff_copyChunk( someChunk );
 
