@@ -87,6 +87,10 @@ raff_next( raff_List* list );
 void
 raff_prepend( raff_List* list, raff_Chunk* chunk );
 
+// Adds a chunk to the end of a list.
+void
+raff_append( raff_List* list, raff_Chunk* chunk );
+
 // Creates a new empty raff file.  Files created this way
 // have no chunk, so raff_fileAsChunk() returns NULL.
 raff_File*

@@ -40,6 +40,7 @@ typedef struct raff_List {
     raff_ID     id;
     raff_Chunk* cursor;
     raff_Chunk* first;
+    raff_Chunk* last;
     
     raff_Chunk* asChunk;
 } raff_List;
@@ -365,6 +366,7 @@ raff_chunkAsList( raff_Chunk* chunk ) {
     
     list->cursor  = firstChunk;
     list->first   = firstChunk;
+    list->last    = lastChunk;
     
     chunk->asList = list;
     errnum = raff_ERR_NONE;
@@ -554,8 +556,33 @@ raff_prepend( raff_List* list, raff_Chunk* chunk ) {
     
     chunk->next  = list->first;
     list->first = chunk;
-    if( !list->cursor )
-        list->cursor = list->first;
+    if( !list->last )
+        list->last = list->first;
+}
+
+void
+raff_append( raff_List* list, raff_Chunk* chunk ) {
+    // Since we're updating the list it'll no longer
+    // reflect its ->asChunk field, so we clear it
+    // and ->asChunk->asList first if this is set to
+    // the list being modified.
+    if( list->asChunk ) {
+        if( list->asChunk->asList == list )
+            list->asChunk->asList = NULL;
+        list->asChunk = NULL;
+    }
+    
+    // Chunk should be of same file as list.
+    assert( chunk->file == list->file );
+    
+    // Chunk should not have a list.
+    assert( chunk->list == NULL );
+    
+    if( list->last )
+        list->last->next = chunk;
+    list->last = chunk;
+    if( !list->first )
+        list->first = list->last;
 }
 
 raff_File*
