@@ -616,6 +616,7 @@ raff_newList( raff_File* file, raff_ID id ) {
     list->id      = id;
     list->cursor  = NULL;
     list->first   = NULL;
+    list->last    = NULL;
     list->asChunk = false;
     
     return list;
