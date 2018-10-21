@@ -469,7 +469,7 @@ raff_listAsChunk( raff_List* list, bool riff ) {
                 addID( chunk->start, &i, LIST_ID );
             
             // Add chunk size.
-            addSize( chunk->start, &i, iter->size );
+            addSize( chunk->start, &i, iter->size + 4 );
             
             // Add sub-ID.
             addID( chunk->start, &i, iter->id );
